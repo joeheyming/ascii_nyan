@@ -44,6 +44,7 @@ done
 if [ ! -z "${h}" ]; then usage; fi
 
 init;
+
 if [ ! -z "${m}" ]; then
     echo '♫♪♫♪♫♪♫♪♫♪♫♪♫♪';
     open ./original.mp3 & 
@@ -53,10 +54,12 @@ cat <<EOF
 Running NYAN!
     Type Ctrl-c to exit"
 EOF
+BASEDIR=`dirname $0`;
+chmod 777 /tmp/nyan;
 while true; 
 do
-    for x in `ls frames/ | grep txt`; do 
-        cat frames/$x > /tmp/nyan;
+    for x in `ls $BASEDIR/frames/ | grep txt`; do 
+        cat $BASEDIR/frames/$x > /tmp/nyan;
         sleep .2;
 	nextFrame;
     done; 
