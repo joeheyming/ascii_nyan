@@ -56,9 +56,10 @@ Running NYAN!
 EOF
 BASEDIR=`dirname $0`;
 chmod 777 /tmp/nyan;
+frames=`ls $BASEDIR/frames/ | sort`;
 while true; 
 do
-    for x in `ls $BASEDIR/frames/ | grep txt`; do 
+    for x in $frames | grep txt`; do 
         cat $BASEDIR/frames/$x > /tmp/nyan;
         sleep .2;
 	nextFrame;
