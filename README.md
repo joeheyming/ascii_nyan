@@ -15,6 +15,7 @@ usage
 ^_^
 
 Make sure when running emacs that you start the emacsclient server:
-M-x start-server
+
+M-x server-start
 
 Enjoy!
