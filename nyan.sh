@@ -4,7 +4,7 @@ function usage() {
     cat <<EOF
 ./nyan.sh [-e] [-h] [-m]
 -e --> run in emacs
--m --> play music (mac only)
+-m --> play music
 -h --> show help
 
 ^_^
@@ -47,7 +47,11 @@ init;
 
 if [ ! -z "${m}" ]; then
     echo '♫♪♫♪♫♪♫♪♫♪♫♪♫♪';
-    open ./original.mp3 & 
+    if [ "$OSTYPE" = linux-gnu ]; then
+        xdg-open ./original.mp3
+    else
+        open ./original.mp3 &
+    fi
 fi
 
 cat <<EOF

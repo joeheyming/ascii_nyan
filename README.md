@@ -9,7 +9,7 @@ usage
 ./nyan.sh [-e] [-h] [-m]
 
 -e --> run in emacs
--m --> play music (mac only)
+-m --> play music
 -h --> show help
 ```
 ^_^
