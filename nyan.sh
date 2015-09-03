@@ -32,6 +32,7 @@ function ctrl_c() {
         # cleanup the extra frame
 	emacsclient -e '(delete-frame)' > /dev/null;
     fi
+    rm -f /tmp/nyan
     exit
 }
 
