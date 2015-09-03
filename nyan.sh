@@ -20,9 +20,25 @@ function nextFrame() {
     cat /tmp/nyan;
 }
 
+RUNNING_EMACS=''
+MP3_PID=''
+# trap ctrl-c and call ctrl_c()
+trap ctrl_c INT
+function ctrl_c() {
+    if [ ! -z $MP3_PID ]; then
+        kill -9 $MP3_PID;
+    fi
+    if [ $RUNNING_EMACS ]; then
+        # cleanup the extra frame
+	emacsclient -e '(delete-frame)' > /dev/null;
+    fi
+    exit
+}
+
 while getopts "meh" o; do
     case "${o}" in
-	e) 
+	e)
+            RUNNING_EMACS=1
 	    function init() {
 		emacsclient -e '(if (get-buffer "nyan") (kill-buffer "nyan"))' > /dev/null;
 		emacsclient --no-wait -c /tmp/nyan > /dev/null;
@@ -48,9 +64,11 @@ init;
 if [ ! -z "${m}" ]; then
     echo '♫♪♫♪♫♪♫♪♫♪♫♪♫♪';
     if [ "$OSTYPE" = linux-gnu ]; then
-        xdg-open ./original.mp3
+        xdg-open ./original.mp3 &
+        MP3_PID=$!
     else
-        open ./original.mp3 &
+        afplay ./original.mp3 &
+        MP3_PID=$!
     fi
 fi
 
