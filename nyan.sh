@@ -78,6 +78,7 @@ Running NYAN!
     Type Ctrl-c to exit"
 EOF
 BASEDIR=`dirname $0`;
+touch /tmp/nyan;
 chmod 777 /tmp/nyan;
 FRAMEDIR="$BASEDIR/frames"
 frames=`ls $FRAMEDIR | grep txt$ | sort`;
