@@ -1,0 +1,14 @@
+name = "nyan-cat"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+# Optional: KV namespace for caching frames
+# [[kv_namespaces]]
+# binding = "FRAMES_CACHE"
+# id = "your-kv-namespace-id"
+
+[vars]
+# Change this to your GitHub username/repo
+GITHUB_REPO = "joeheyming/ascii_nyan"
+GITHUB_BRANCH = "master"
+
